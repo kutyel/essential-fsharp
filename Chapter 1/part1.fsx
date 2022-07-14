@@ -1,8 +1,7 @@
-type Customer = { 
-    Id: string
-    IsEligible: bool
-    IsRegistered: bool
-}
+type Customer =
+    { Id: string
+      IsEligible: bool
+      IsRegistered: bool }
 
 let calculateTotal customer spend : decimal =
     let discount =
@@ -10,12 +9,28 @@ let calculateTotal customer spend : decimal =
             (spend * 0.1M)
         else
             0.0M
+
     spend - discount
 
-let john = {Id="John"; IsEligible=true; IsRegistered=true}
-let mary = {Id="Mary"; IsEligible=true; IsRegistered=true}
-let richard = {Id="Richard"; IsEligible=false; IsRegistered=true}
-let sarah = {Id="Sarah"; IsEligible=false; IsRegistered=false}
+let john =
+    { Id = "John"
+      IsEligible = true
+      IsRegistered = true }
+
+let mary =
+    { Id = "Mary"
+      IsEligible = true
+      IsRegistered = true }
+
+let richard =
+    { Id = "Richard"
+      IsEligible = false
+      IsRegistered = true }
+
+let sarah =
+    { Id = "Sarah"
+      IsEligible = false
+      IsRegistered = false }
 
 let areEqual expected actual = actual = expected
 

@@ -1,11 +1,6 @@
-type RegisteredCustomer = {
-    Id: string
-    IsEligible: bool
-}
+type RegisteredCustomer = { Id: string; IsEligible: bool }
 
-type UnregisteredCustomer = { 
-    Id: string
-}
+type UnregisteredCustomer = { Id: string }
 
 type Customer =
     | Registered of RegisteredCustomer
@@ -16,12 +11,13 @@ let calculateTotal customer spend : decimal =
         match customer with
         | Registered c when c.IsEligible && spend >= 100.0M -> spend * 0.1M
         | _ -> 0.0M
+
     spend - discount
 
-let john = Registered {Id="John"; IsEligible=true}
-let mary = Registered {Id="Mary"; IsEligible=true}
-let richard = Registered {Id="Richard"; IsEligible=false}
-let sarah = Guest {Id="Sarah"}
+let john = Registered { Id = "John"; IsEligible = true }
+let mary = Registered { Id = "Mary"; IsEligible = true }
+let richard = Registered { Id = "Richard"; IsEligible = false }
+let sarah = Guest { Id = "Sarah" }
 
 let areEqual expected actual = actual = expected
 
