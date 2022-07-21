@@ -1,3 +1,7 @@
 {
-    "FSharp.inlayHints.disableLongTooltip": true
+    "FSharp.inlayHints.disableLongTooltip": true,
+    "[fsharp]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "Ionide.Ionide-fsharp"
+    },
 }
