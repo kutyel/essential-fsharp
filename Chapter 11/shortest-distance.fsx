@@ -63,7 +63,7 @@ let run start finish =
     Path.Combine(__SOURCE_DIRECTORY__, "resources", "data.csv")
     |> loadData
     |> findPossibleRoutes start finish
-    |> selectShortestDistance
+    |> selectShortestRoute
     |> prinfn "%A"
 
 let result = run "Cogburg" "Leverstorm"
