@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Chapter_12</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="AsyncDemo.fs" />
+    <Compile Include="AsyncResultDemo.fs" />
+    <Compile Include="AsyncResultDemoTests.fs" />
+    <Compile Include="OptionDemo.fs" />
+    <Compile Include="ResultDemo.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
+  </ItemGroup>
+
+</Project>
