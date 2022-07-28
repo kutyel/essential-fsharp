@@ -5,6 +5,8 @@ open Microsoft.AspNetCore.Http
 open Giraffe
 open Giraffe.EndpointRouting
 open Giraffe.ViewEngine
+open GiraffeExample.Todos
+open GiraffeExample.TodoStore
 
 let indexView =
     html [] [
@@ -29,9 +31,11 @@ let apiRoutes =
     [ GET [ route "/" (json {| Response = "Hello from 🦒!!" |})
             routef "/%s" sayHelloNameHandler ] ]
 
+
 let endpoints =
     [ GET [ route "/" (htmlView indexView) ]
-      subRoute "/api" apiRoutes ]
+      subRoute "/api" apiRoutes
+      subRoute "/api/todo" apiTodoRoutes ]
 
 let notFoundHandler = "Not Found" |> text |> RequestErrors.notFound
 
@@ -42,7 +46,11 @@ let configureApp (appBuilder: IApplicationBuilder) =
         .UseGiraffe(notFoundHandler)
 
 let configureServices (services: IServiceCollection) =
-    services.AddRouting().AddGiraffe() |> ignore
+    services
+        .AddRouting()
+        .AddGiraffe()
+        .AddSingleton<TodoStore>(TodoStore())
+    |> ignore
 
 [<EntryPoint>]
 let main args =
