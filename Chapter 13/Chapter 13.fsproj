@@ -4,6 +4,7 @@
     <RootNamespace>Chapter_13</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Shared.fs" />
     <Compile Include="TodoStore.fs" />
     <Compile Include="Todos.fs" />
     <Compile Include="Program.fs" />

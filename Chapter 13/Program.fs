@@ -5,22 +5,8 @@ open Microsoft.AspNetCore.Http
 open Giraffe
 open Giraffe.EndpointRouting
 open Giraffe.ViewEngine
-open GiraffeExample.Todos
+open GiraffeExample
 open GiraffeExample.TodoStore
-
-let indexView =
-    html [] [
-        head [] [
-            title [] [ str "Giraffe Example" ]
-        ]
-        body [] [
-            h1 [] [ str "I |> F#" ]
-            p [ _class "some-css-class"
-                _id "someId" ] [
-                str "Hello World from the Giraffe View Engine"
-            ]
-        ]
-    ]
 
 let sayHelloNameHandler (name: string) : HttpHandler =
     fun (next: HttpFunc) (ctx: HttpContext) ->
@@ -33,15 +19,19 @@ let apiRoutes =
 
 
 let endpoints =
-    [ GET [ route "/" (htmlView indexView) ]
+    [ GET [ route
+                "/"
+                (htmlView
+                 <| Todos.Views.todoView Todos.Data.todoList) ]
       subRoute "/api" apiRoutes
-      subRoute "/api/todo" apiTodoRoutes ]
+      subRoute "/api/todo" Todos.apiTodoRoutes ]
 
 let notFoundHandler = "Not Found" |> text |> RequestErrors.notFound
 
 let configureApp (appBuilder: IApplicationBuilder) =
     appBuilder
         .UseRouting()
+        .UseStaticFiles()
         .UseGiraffe(endpoints)
         .UseGiraffe(notFoundHandler)
 
